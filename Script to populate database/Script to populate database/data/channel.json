@@ -1,0 +1,128 @@
+[
+    {
+        "_id": "1",
+        "name": "Whatsapp",
+        "description": "Whatsapp group",
+        "members": {
+            "1": {
+            "_id": "1",
+            "name": "John Doe"
+            },
+            "2": {
+            "_id": "3",
+            "name": "Merry Smith"
+            }
+        },
+        "createdBy": 1,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "2",
+        "name": "Instagram",
+        "description": "Instagram channel",
+        "members": {
+            "1": {
+            "_id": "4",
+            "name": "Jane Bond"
+            },
+            "2": {
+            "_id": "3",
+            "name": "Merry Smith"
+            }
+        },
+        "createdBy": 2,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "3",
+        "name": "Family Group",
+        "description": "Group for our own family members",
+        "members": {
+            "1": {
+            "_id": "2",
+            "name": "Jane Smith"
+            },
+            "2": {
+            "_id": "3",
+            "name": "Merry Smith"
+            }
+        },
+        "createdBy": 4,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "4",
+        "name": "Travel Group",
+        "description": "The group of our travel mates.",
+        "members": {
+            "1": {
+            "_id": "4",
+            "name": "Jane Bond"
+            },
+            "2": {
+            "_id": "1",
+            "name": "John Doe"
+            }
+        },
+        "createdBy": 3,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "5",
+        "name": "Dance Group",
+        "description": "A group of dancers.",
+        "members": {},
+        "createdBy": 2,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "6",
+        "name": "Friends Forever",
+        "description": "A group of our close friends.",
+        "members": {},
+        "createdBy": 4,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "7",
+        "name": "Potluck Party",
+        "description": "A group of people participating in the upcoming potluck event.",
+        "members": {},
+        "createdBy": 5,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "8",
+        "name": "Upcoming Project",
+        "description": "A group of people who will be part of our upcoming project.",
+        "members": {},
+        "createdBy": 6,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "9",
+        "name": "School Friends",
+        "description": "A group of people who are from my schools.",
+        "members": {},
+        "createdBy": 7,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "10",
+        "name": "Singing Performance",
+        "description": "A group of people who are performing devotional songs in our upcoming festivals.",
+        "members": {},
+        "createdBy": 8,
+        "createdTs": "2025-10-06T12:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    }
+]

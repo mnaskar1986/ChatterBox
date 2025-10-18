@@ -1,0 +1,66 @@
+[
+    {
+        "_id": "1",
+        "content": "Hi Friends! How are you all?",
+        "channelId": "1",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "2",
+        "content": "Hi All! Let's plan for a weekend trip today.",
+        "channelId": "2",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "3",
+        "content": "Hi! I am so glad that we are going for a party together.",
+        "channelId": "5",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "4",
+        "content": "Hi! Is my daughter at your place?",
+        "channelId": "4",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "5",
+        "content": "Hi! Please let me know when is the party?",
+        "channelId": "3",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "6",
+        "content": "Hi! Please come to my place for puja celebration.",
+        "channelId": "7",
+        "createdTs": "2025-08-03T16:00:00Z"
+    },
+    {
+        "_id": "7",
+        "content": "Hi Friends! How are you all?",
+        "channelId": "9",
+        "createdTs": "2025-08-03T16:00:00Z",
+        "updatedTs": "2023-08-03T23:00:00Z"
+    },
+    {
+        "_id": "8",
+        "content": "Hi Friends! How are you all?",
+        "channelId": "10",
+        "createdTs": "2025-08-03T16:00:00Z",
+        "updatedTs": "2023-08-03T23:45:00Z"
+    },
+    {
+        "_id": "9",
+        "content": "Hi Friends! How are you all?",
+        "channelId": "8",
+        "createdTs": "2025-08-03T16:00:00Z",
+        "updatedTs": "2023-08-04T00:30:00Z"
+    },
+    {
+        "_id": "10",
+        "content": "Hi Friends! How are you all?",
+        "channelId": "5",
+        "createdTs": "2025-08-03T16:00:00Z",
+        "updatedTs": "2023-08-04T01:15:00Z"
+    }
+]

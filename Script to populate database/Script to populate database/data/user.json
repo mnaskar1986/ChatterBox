@@ -1,0 +1,80 @@
+[
+    {
+        "_id": "1",
+        "username": "john_doe",
+        "email": "john.doe@example.com",
+        "password": "johnd",
+        "joinedChannels": {
+            "1": {
+            "_id": "1",
+            "name": "Whatsapp",
+            "description": "Whatsapp group"
+            },
+            "2": {"_id": "2",
+            "name": "Instagram",
+            "description": "Instagram channel"
+            }
+        }
+    },
+    {
+        "_id": "2",
+        "username": "jane_smith",
+        "email": "jane.smith@example.com",
+        "password": "janesm",
+        "joinedChannels": {
+            "1": {
+                "_id": "4",
+                "name": "Travel Group",
+                "description": "The group of our travel mates."
+            },
+            "2": {"_id": "2",
+            "name": "Instagram",
+            "description": "Instagram channel"
+            }
+        }
+    },
+    {
+        "_id": "3",
+        "username": "Merry_smith",
+        "email": "merry.smith@example.com",
+        "password": "merrysm",
+        "joinedChannels": {
+            "1": {
+                "_id": "1",
+                "name": "Whatsapp",
+                "description": "Whatsapp group"
+            },
+            "2": {
+            "_id": "5",
+            "name": "Dance Group",
+            "description": "A group of dancers."
+            },
+            "3": {
+            "_id": "4",
+            "name": "Travel Group",
+            "description": "The group of our travel mates."
+            }
+        }
+    },
+    {
+        "_id": "4",
+        "username": "jane_bond",
+        "email": "jane.bond@example.com",
+        "password": "janeb",
+        "joinedChannels": {
+            "1": {
+                "_id": "6",
+                "name": "Friends Forever",
+                "description": "A group of our close friends."
+            },
+            "2": {"_id": "9",
+            "name": "School Friends",
+            "description": "A group of people who are from my schools."
+            },
+            "3": {"_id": "7",
+            "name": "Potluck Party",
+            "description": "A group of people participating in the upcoming potluck event."
+            }
+        }
+    }
+]
