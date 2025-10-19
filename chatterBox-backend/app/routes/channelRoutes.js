@@ -17,7 +17,6 @@ channelRouter.route("/").get(auth, getAllChannels);
 channelRouter.route("/").post(auth, createChannel);
 
 channelRouter.route("/:id/message").post(auth, sendMessage);
-//channelRouter.route("/:id").get(getAllMessages);
 
 
 module.exports = channelRouter;

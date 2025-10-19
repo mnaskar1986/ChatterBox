@@ -4,7 +4,7 @@ const userRouter = express.Router();
 
 const {
   addUser,
-  deleteUser,
+  //deleteUser,
   editUser,
   getAllUsers,
   userDetails,
@@ -16,7 +16,7 @@ userRouter.route("/").post(addUser);
 userRouter.route("/login").post(login);
 userRouter.route("/logout").get(auth, logout);
 userRouter.route("/:id").get(auth, userDetails);
-userRouter.route("/:id").delete(auth, deleteUser);
+//userRouter.route("/:id").delete(auth, deleteUser);
 userRouter.route("/:id").put(auth, editUser);
 userRouter.route("/").get(getAllUsers);
 

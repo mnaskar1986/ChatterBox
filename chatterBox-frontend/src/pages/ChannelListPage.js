@@ -32,7 +32,7 @@ const ChannelListPage = () => {
     <>
       {loading && <AlertMessage variant="info" message="Loding..." />}
       {error && <AlertMessage variant="danger" message={error} />}
-      {channels && channels.length == 0 && (
+      {!channels && (
         <AlertMessage variant="info" message="No channels found" />
       )}
       <Container>
@@ -60,25 +60,12 @@ const ChannelListPage = () => {
                 <tr key={channel._id} className="text-center">
                   <td>{channel.name}</td>
                   <td>{channel.description}</td>
-                  {/* <td>
-                    <a href={`mailto:${user.email}`}>{user.email}</a>
-                  </td> */}
                   <td>
-                    {/* <LinkContainer to={`/admin/user/${user._id}/edit`}> */}
-                      {/* <Button variant="info" className="mb-3" onClick={() => window.location.href=`/admin/channel/${channel._id}/edit`}>
-                        Edit Channel
-                      </Button> */}
-                    {/* </LinkContainer> */}
                     <LinkContainer to={`/channels/${channel._id}`}>
                       <Button variant="link" className="mb-2">
                         Channel Details
                       </Button>
                     </LinkContainer>
-                     {/* <LinkContainer to={`/channels/${channel._id}/messages`}>
-                      <Button variant="link" className="mb-2">
-                          Messages
-                      </Button>
-                    </LinkContainer> */}
                      <LinkContainer to={`/messages/${channel._id}`}> 
                       <Button variant="link" className="mb-2"
                           onClick={ () => joinChannelHandler(`${channel._id}`)}>
@@ -90,11 +77,6 @@ const ChannelListPage = () => {
                           Send Message
                       </Button>
                     </LinkContainer>
-                    {/* <LinkContainer to="/admin/message/new">
-                      <Button variant="info" className="mb-3">
-                          Send Message
-                      </Button>
-                    </LinkContainer> */}
                   </td>
                 </tr>
               ))}

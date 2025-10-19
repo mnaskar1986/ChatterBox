@@ -41,13 +41,13 @@ const updateUser = async (id, updateData) => {
   }
 };
 
-const deleteUser = async (id) => {
-  try {
-    return await UserModel.findByIdAndUpdate(id);
-  } catch (err) {
-    throw new Error(`Error while deleting user: ${err.message}`);
-  }
-};
+// const deleteUser = async (id) => {
+//   try {
+//     return await UserModel.findByIdAndUpdate(id);
+//   } catch (err) {
+//     throw new Error(`Error while deleting user: ${err.message}`);
+//   }
+// };
 
 const findActiveUserSession = async (userId, sessionToken) => {
   try {
@@ -85,7 +85,7 @@ module.exports = {
   createUser,
   findUserById,
   updateUser,
-  deleteUser,
+  //deleteUser,
   findUsers,
   findActiveUserSession,
   createUserSession,

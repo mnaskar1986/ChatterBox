@@ -29,8 +29,8 @@ const chnnelSchema = mongoose.Schema(
             required: true,
         },
         members: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "UserModel",
+            type: Object,
+            required: true,
         }],
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,

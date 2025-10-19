@@ -43,7 +43,7 @@ const reducer = combineReducers({
   logout: userLogoutReducer,
   userList: userListReducer,
   userDetails: userDetailsReducer,
-  userDelete: userDeleteReducer,
+  //userDelete: userDeleteReducer,
   userDetailsUpdate: userDetailsUpdateReducer,
   userRegister: userRegisterReducer,
   channelCreate: createChannelReducer,

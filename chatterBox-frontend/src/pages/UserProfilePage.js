@@ -7,7 +7,6 @@ const UserProfilePage = () => {
   console.log(loggedInUser);
 
   const [username, setUserName] = React.useState(loggedInUser.username);
-  // const [fullname, setFullName] = React.useState(loggedInUser.fullname);
   const [email, setEmail] = React.useState(loggedInUser.email);
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");

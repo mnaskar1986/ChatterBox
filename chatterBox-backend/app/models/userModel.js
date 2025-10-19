@@ -30,8 +30,7 @@ const userSchema = mongoose.Schema(
             required: true,
         },
         joinedChannels: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "ChannelModel",
+            type: Object,
         }],
         createdTs: {
             type: Date,

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import AlertMessage from "../components/AlertMessage";
 
 const Channels = ({ channel }) => {
   console.log(channel);
@@ -9,10 +10,20 @@ const Channels = ({ channel }) => {
       <Card.Body>
         {/* <Link to={`/channels/${channel._id}`}> */}
           <Card.Title as="div">
-            Channel Name: <strong>{channel.name}</strong>
+            <strong>Channel Name:</strong>{channel.name}
           </Card.Title>
         {/* </Link> */}
-        Channel Description: <strong>{channel.description}</strong>
+        <strong>Channel Description:</strong>{channel.description}
+        <strong>Members:</strong>
+        {!channel.members && (
+                <div><strong>No member in channel.</strong></div>
+              )}
+          {channel.members && channel.members.map((member) => (
+              <li key={member._id}>
+                <strong>Name:</strong>{ member.username }
+                {/* Email: { member.email } */}
+              </li>
+            ))}
       </Card.Body>
     </Card>
   );

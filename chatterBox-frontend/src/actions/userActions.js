@@ -16,9 +16,9 @@ import {
   USER_LIST_SUCCESS,
   USER_LIST_FAILURE,
   USER_LIST_REQUEST,
-  USER_DELETE_REQUEST,
-  USER_DELETE_SUCCESS,
-  USER_DELETE_FAILURE,
+  // USER_DELETE_REQUEST,
+  // USER_DELETE_SUCCESS,
+  // USER_DELETE_FAILURE,
   USER_REGISTER_FAILURE,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_REQUEST,
@@ -141,50 +141,50 @@ export const registerUser =
     }
   };
 
-export const deleteUser = (userId) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_DELETE_REQUEST,
-    });
+// export const deleteUser = (userId) => async (dispatch) => {
+//   try {
+//     dispatch({
+//       type: USER_DELETE_REQUEST,
+//     });
 
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+//     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-        Authorization: `Bearer ${userInfo.sessionToken}`,
-      },
-    };
+//     const config = {
+//       headers: {
+//         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
+//         Authorization: `Bearer ${userInfo.sessionToken}`,
+//       },
+//     };
 
-    await axios
-      .delete(BACKEND_URL_ENDPOINT + `users/${userId}`, config)
-      .then((res) => {
-        if (res.status === 200) {
-          dispatch({
-            type: USER_DELETE_SUCCESS,
-            payload: res.data.message,
-          });
-        } else {
-          dispatch({
-            type: USER_DELETE_FAILURE,
-            payload: res.data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        dispatch({
-          type: USER_DELETE_FAILURE,
-          payload: err.message,
-        });
-      });
-  } catch (err) {
-    dispatch({
-      type: USER_DELETE_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+//     await axios
+//       .delete(BACKEND_URL_ENDPOINT + `users/${userId}`, config)
+//       .then((res) => {
+//         if (res.status === 200) {
+//           dispatch({
+//             type: USER_DELETE_SUCCESS,
+//             payload: res.data.message,
+//           });
+//         } else {
+//           dispatch({
+//             type: USER_DELETE_FAILURE,
+//             payload: res.data.message,
+//           });
+//         }
+//       })
+//       .catch((err) => {
+//         dispatch({
+//           type: USER_DELETE_FAILURE,
+//           payload: err.message,
+//         });
+//       });
+//   } catch (err) {
+//     dispatch({
+//       type: USER_DELETE_FAILURE,
+//       payload: err.message,
+//     });
+//   }
+// };
 
 export const listUsers = () => async (dispatch) => {
   try {

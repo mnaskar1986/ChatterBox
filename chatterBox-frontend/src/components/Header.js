@@ -32,20 +32,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-            {/* {loggedInUser && (<LinkContainer to="/messages">
-                <Nav.Link>
-                  <i className="bi bi-envelope"> Messages</i>
-                </Nav.Link>
-              </LinkContainer>)} */}
-
-              {/* {loggedInUser && (
-                <LinkContainer to="/orders">
-                  <Nav.Link>
-                    <i className="bi bi-bucket-fill"> Orders</i>
-                  </Nav.Link>
-                </LinkContainer>
-              )} */}
-
               {loggedInUser && (
                 <LinkContainer to="/profile">
                   <Nav.Link>

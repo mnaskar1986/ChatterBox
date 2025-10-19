@@ -31,10 +31,33 @@ const joinChannel = async (channelId, userId) => {
     if (!channelObject || ! userObject) {
       return null;
     }
-    channelObject.members.push(userObject);
 
-    userObject.joinedChannels.push(channelObject);
-    
+    let membersInChannel = {};
+    membersInChannel = channelObject.members;
+    const memberAlreadyInChannel = membersInChannel.find(member => member._id === userId);
+    if(!memberAlreadyInChannel) {
+      const newUser = {
+        _id : userId,
+        username: userObject.username,
+        email: userObject.email,
+      };
+      membersInChannel.push(newUser);
+    }
+    channelObject.members= membersInChannel;
+
+    let channelsJoinedByUser = {};
+    channelsJoinedByUser = userObject.joinedChannels;
+    const channelAlreadyJoinedByUser = channelsJoinedByUser.find(channel => channel._id === channelId);
+    if(!channelAlreadyJoinedByUser){
+      const newChannel = {
+        _id : channelId,
+        name: channelObject.name,
+        description: channelObject.description,
+      };
+      channelsJoinedByUser.push(newChannel);
+    }
+    userObject.joinedChannels= channelsJoinedByUser;
+
     const joinChannel = await channelObject.save();
     const updateUser = await userObject.save();
     return joinChannel;
@@ -71,14 +94,6 @@ const sendMessage = async (messageData) => {
     throw new Error(`Error while sending message: ${err.message}`);
   }
 };
-// const getAllMessages = async () => {
-//   try {
-//     const messages = await MessageModel.find();
-//     return messages;
-//   } catch (err) {
-//     throw new Error(`Error while fetching messages: ${err.message}`);
-//   }
-// };
 
 
 module.exports = {
@@ -88,5 +103,4 @@ module.exports = {
   getAllChannels,
   findByChannelname,
   sendMessage,
-  //getAllMessages,
 };

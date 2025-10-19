@@ -19,7 +19,7 @@ const createChannel = expressAsyncHandler(async (req, res) => {
 
     if (newChannel) {
       res.status(201).json({
-        //message: "Channel successfully created",
+        message: "Channel successfully created",
       });
     } else {
       res.status(400).json({

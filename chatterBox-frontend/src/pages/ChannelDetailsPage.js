@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Table, Container, Button, Row, Col } from "react-bootstrap";
-import { useParams, useLocation } from "react-router-dom";
+import { Container, Button, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import AlertMessage from "../components/AlertMessage";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,7 @@ import Channel from "../components/Channels";
 const ChannelDetailsPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const location = useLocation();
-  const channelId = location.state?.channelId;
 
-  const loggedInUser = JSON.parse(sessionStorage.getItem("userInfo"));
   const channelDetails = useSelector((state) => state.channelDetails);
   const { loading, error, channel } = channelDetails;
 

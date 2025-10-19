@@ -3,7 +3,7 @@ import { Table, Container, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import AlertMessage from "../components/AlertMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers, deleteUser } from "../actions/userActions";
+import { listUsers } from "../actions/userActions";
 
 const UsersListPage = () => {
   const dispatch = useDispatch();
@@ -11,8 +11,8 @@ const UsersListPage = () => {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { successDelete, errorDelete } = userDelete;
+  // const userDelete = useSelector((state) => state.userDelete);
+  // const { successDelete, errorDelete } = userDelete;
 
   const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
@@ -23,13 +23,13 @@ const UsersListPage = () => {
     } else {
       window.location.replace("/login");
     }
-  }, [dispatch, successDelete]);
+  }, [dispatch]);
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure, you want to delete the user?")) {
-      dispatch(deleteUser(id));
-    }
-  };
+  // const deleteHandler = (id) => {
+  //   if (window.confirm("Are you sure, you want to delete the user?")) {
+  //     dispatch(deleteUser(id));
+  //   }
+  // };
 
   return (
     <>

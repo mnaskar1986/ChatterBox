@@ -24,7 +24,8 @@ const CreateChannelPage = () => {
   const {loading, success, error} = channelCreate
   console.log(loading, success, error)
   
-  const createHandler = () => {
+  const createHandler = (event) => {
+    event.preventDefault();
     dispatch(createChannel(name, description))
   };
 
@@ -51,7 +52,6 @@ const CreateChannelPage = () => {
               onChange={(e) => handleDescriptionChange(e)}
             />
           </Form.Group>
-          <LinkContainer to={`/channels/public`}>
             <Button
               type="submit"
               variant="primary"
@@ -59,7 +59,13 @@ const CreateChannelPage = () => {
               onClick={createHandler}>
               Create Channel
             </Button>
-          </LinkContainer>
+          <LinkContainer to={`/channels/public`}>
+                  <Button variant="link"
+                        type="submit"
+                        className="mb-3">
+                        All public channels
+                  </Button>
+                </LinkContainer>
         </Form>
       </Container>
     </>

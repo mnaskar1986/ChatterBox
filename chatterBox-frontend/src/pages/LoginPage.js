@@ -73,10 +73,10 @@ const LoginPage = () => {
       </LinkContainer>
 
       <Row>
-                <Col>
-                  New user? <Link to="/register">Sign Up</Link>
-                </Col>
-              </Row>
+        <Col>
+          New user? <Link to="/register">Sign Up</Link>
+        </Col>
+      </Row>
     </>
   );
 };

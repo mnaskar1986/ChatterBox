@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Col, Row, Container, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form, Container, Button } from "react-bootstrap";
 import AlertMessage from "../components/AlertMessage";
 import {useDispatch, useSelector} from 'react-redux'
 import { sendMessage } from "../actions/channelActions";
@@ -21,7 +20,8 @@ const SendMessagePage = () => {
   const {loading, success, error} = messageSend
   console.log(loading, success, error)
   
-  const sendMessageHandler = () => {
+  const sendMessageHandler = (event) => {
+    event.preventDefault();
     dispatch(sendMessage(content, loggedInUser._id, id))
   };
 
@@ -40,13 +40,19 @@ const SendMessagePage = () => {
               onChange={(e) => handleContentChange(e)}
             />
           </Form.Group>
-          <LinkContainer to={`/messages/${id}`}> 
             <Button
                 type="submit"
                 variant="primary"
                 className="mb-3"
                 onClick={sendMessageHandler}>
                 Send Message
+            </Button>
+          <LinkContainer to={`/messages/${id}`}> 
+            <Button
+                type="submit"
+                variant="link"
+                className="mb-3">
+                All Message
             </Button>
           </LinkContainer>
         </Form>
