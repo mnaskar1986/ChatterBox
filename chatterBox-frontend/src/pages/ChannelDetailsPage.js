@@ -33,14 +33,12 @@ const ChannelDetailsPage = () => {
       )}
       <h3>Channel Details</h3>
       <LinkContainer to={`/channels/public`}>
-            <Button
-              variant="link"
+        <Button variant="link"
               type="submit"
-              className="mb-3"
-            >
+              className="mb-3">
               All public channels
-            </Button>
-            </LinkContainer>
+        </Button>
+      </LinkContainer>
       <Container>
         {channel && (
           <Row>

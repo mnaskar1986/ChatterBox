@@ -81,6 +81,13 @@ const MessageListPage = () => {
         <AlertMessage variant="info" message="No messages found" />
       )}
       <Container>
+        <LinkContainer to={`/channels/public`}>
+          <Button variant="link"
+                      type="submit"
+                      className="mb-3">
+                      All public channels
+          </Button>
+        </LinkContainer>
         {messages && messages.length > 0 && (
         //   <Row>
         //   {channels.map((channel) => (
