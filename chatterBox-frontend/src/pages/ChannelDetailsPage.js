@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import AlertMessage from "../components/AlertMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchChannelDetails, listMessages } from "../actions/channelActions";
+import { fetchChannelDetails } from "../actions/channelActions";
 import Channel from "../components/Channels";
 
 const ChannelDetailsPage = () => {
@@ -24,10 +24,6 @@ const ChannelDetailsPage = () => {
     dispatch(fetchChannelDetails(id));
     }, [dispatch]);
 
-  //  const getMessagesHandler = () => {
-  //      dispatch(listMessages(id))
-  //    };
-
   return (
     <>
       {loading && <AlertMessage variant="info" message="Loding..." />}
@@ -36,6 +32,15 @@ const ChannelDetailsPage = () => {
         <AlertMessage variant="info" message="No channel found" />
       )}
       <h3>Channel Details</h3>
+      <LinkContainer to={`/channels/public`}>
+            <Button
+              variant="link"
+              type="submit"
+              className="mb-3"
+            >
+              All public channels
+            </Button>
+            </LinkContainer>
       <Container>
         {channel && (
           <Row>

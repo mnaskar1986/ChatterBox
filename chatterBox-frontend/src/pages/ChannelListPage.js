@@ -79,7 +79,7 @@ const ChannelListPage = () => {
                           Messages
                       </Button>
                     </LinkContainer> */}
-                     <LinkContainer to={`/channels/${channel._id}/messages`}> 
+                     <LinkContainer to={`/messages/${channel._id}`}> 
                       <Button variant="link" className="mb-2"
                           onClick={ () => joinChannelHandler(`${channel._id}`)}>
                           Join Channel

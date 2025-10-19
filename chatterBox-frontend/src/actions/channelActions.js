@@ -228,45 +228,45 @@ export const sendMessage =
     }
   };
 
-  export const listMessages = 
-  (channelId) => async (dispatch) => {
-    try {
-      dispatch({
-        type: MESSAGE_LIST_REQUEST,
-      });
+  // export const listMessages = 
+  // (channelId) => async (dispatch) => {
+  //   try {
+  //     dispatch({
+  //       type: MESSAGE_LIST_REQUEST,
+  //     });
   
-      const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  //     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo.sessionToken}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-        },
-      };
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         //Authorization: `Bearer ${userInfo.sessionToken}`,
+  //         "Access-Control-Allow-Origin": "*",
+  //         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
+  //       },
+  //     };
   
-      await axios
-        .get(GET_ALL_CHANNELS_API+ '/' + `${channelId}` + '/messages',
-          { channelId }, 
-          config)
-        .then((res) => {
-          if (res.status === 200) {
-            dispatch({
-              type: MESSAGE_LIST_SUCCESS,
-              payload: res.data.data,
-            });
-          } else {
-            dispatch({
-              type: MESSAGE_LIST_FAILURE,
-              payload: 'Not able to fetch the messages',
-            });
-          }
-        });
-    } catch (err) {
-      dispatch({
-        type: MESSAGE_LIST_FAILURE,
-        payload: 'Not abl to fetch the messages',
-      });
-    }
-  };
+  //     await axios
+  //       .get(GET_ALL_CHANNELS_API+ '/' + `${channelId}` + '/messages',
+  //         { channelId }, 
+  //         config)
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           dispatch({
+  //             type: MESSAGE_LIST_SUCCESS,
+  //             payload: res.data.data,
+  //           });
+  //         } else {
+  //           dispatch({
+  //             type: MESSAGE_LIST_FAILURE,
+  //             payload: 'Not able to fetch the messages',
+  //           });
+  //         }
+  //       });
+  //   } catch (err) {
+  //     dispatch({
+  //       type: MESSAGE_LIST_FAILURE,
+  //       payload: 'Not abl to fetch the messages',
+  //     });
+  //   }
+  // };

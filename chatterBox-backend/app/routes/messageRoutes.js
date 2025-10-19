@@ -8,6 +8,6 @@ const {
 } = require("../services/messageService");
 
 messageRouter.route("/channels/:id/message").post(auth, sendMessage);
-messageRouter.route("/:id/message").get(auth, getAllMessages);
+messageRouter.route("/:id").get(getAllMessages);
 
 module.exports =  messageRouter

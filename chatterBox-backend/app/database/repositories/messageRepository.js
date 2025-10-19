@@ -11,7 +11,7 @@ const sendMessage = async (messageData) => {
 
 const getAllMessages = async (channelId) => {
   try {
-    const messages = await MessageModel.find();
+    const messages = await MessageModel.find({ channelId: channelId });
     return messages;
   } catch (err) {
     throw new Error(`Error while fetching messages: ${err.message}`);

@@ -56,151 +56,46 @@ export const sendMessage =
     }
   };
 
-// export const deletProduct = (productId) => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: PRODUCT_DELETE_REQUEST,
-//     });
-
-//     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.sessionToken}`,
-//         "Access-Control-Allow-Origin": "*",
-//         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-//       },
-//     };
-
-//     await axios
-//       .delete(BACKEND_URL_ENDPOINT + `products/${productId}`, config)
-//       .then((res) => {
-//         if (res.status === 200) {
-//           dispatch({
-//             type: PRODUCT_DELETE_SUCCESS,
-//             payload: res.data.message,
-//           });
-//         } else {
-//           dispatch({
-//             type: PRODUCT_DELETE_FAILURE,
-//             payload: res.data.message,
-//           });
-//         }
-//       });
-//   } catch (err) {
-//     dispatch({
-//       type: PRODUCT_DELETE_FAILURE,
-//       payload: err.response.data.message,
-//     });
-//   }
-// };
-
-// export const updateProductDetails =
-//   (id, name, description, quantityInStock, price, categoryId, imageUrl) =>
-//   async (dispatch) => {
-//     try {
-//       dispatch({
-//         type: PRODUCT_UPDATE_REQUEST,
-//       });
-
-//     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.sessionToken}`,
-//         "Access-Control-Allow-Origin": "*",
-//         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-//       },
-//     };
-
-//       await axios
-//         .put(BACKEND_URL_ENDPOINT + "products/" + id, {name, description, quantityInStock, price, categoryId, imageUrl}, config)
-//         .then((res) => {
-//           if (res.status === 200) {
-//             dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: res.data.message });
-//           } else {
-//             dispatch({
-//               type: PRODUCT_UPDATE_FAILURE,
-//               payload: res.data.message,
-//             });
-//           }
-//         });
-//     } catch (err) {
-//       dispatch({
-//         type: PRODUCT_UPDATE_FAILURE,
-//         payload: err.response.data.message,
-//       });
-//     }
-//   };
-
-export const listMessages = () => async (dispatch) => {
-  try {
-    dispatch({
-      type: MESSAGE_LIST_REQUEST,
-    });
-
-    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-      },
-    };
-
-    await axios
-      .get(GET_ALL_MESSAGES_API, config)
-      .then((res) => {
-        if (res.status === 200) {
-          dispatch({
-            type: MESSAGE_LIST_SUCCESS,
-            payload: res.data.data,
-          });
-        } else {
-          dispatch({
-            type: MESSAGE_LIST_FAILURE,
-            payload: 'Not able to fetch the messages',
-          });
-        }
+export const listMessages = 
+  (channelId) => async (dispatch) => {
+    try {
+      dispatch({
+        type: MESSAGE_LIST_REQUEST,
       });
-  } catch (err) {
-    dispatch({
-      type: MESSAGE_LIST_FAILURE,
-      payload: 'Not abl to fetch the messages',
-    });
-  }
-};
-
-// export const fetchProductDetails = (productId) => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: PRODUCT_DETAILS_REQUEST,
-//     });
-
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Origin": "*",
-//         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
-//       },
-//     };
-
-//     await axios
-//       .get(GET_ALL_PRODUCTS_API+ '/' + productId, config)
-//       .then((res) => {
-//         if (res.status === 200) {
-//           dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: res.data.data });
-//         } else {
-//           dispatch({ type: PRODUCT_DETAILS_FAILURE, payload: res.data.message });
-//         }
-//       });
-//   } catch (err) {
-//     dispatch({
-//       type: PRODUCT_DETAILS_FAILURE,
-//       payload: err.response.data.message,
-//     });
-//   }
-// };
+  
+      const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          //Authorization: `Bearer ${userInfo.sessionToken}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
+        },
+      };
+  
+      await axios
+        .get(GET_ALL_MESSAGES_API+ '/' + `${channelId}`,
+          { channelId }, 
+          config)
+        .then((res) => {
+          if (res.status === 200) {
+            dispatch({
+              type: MESSAGE_LIST_SUCCESS,
+              payload: res.data.data,
+              success: "Fetched messages successfully",
+            });
+          } else {
+            dispatch({
+              type: MESSAGE_LIST_FAILURE,
+              payload: 'Not able to fetch the messages',
+            });
+          }
+        });
+    } catch (err) {
+      dispatch({
+        type: MESSAGE_LIST_FAILURE,
+        payload: 'Not abl to fetch the messages',
+      });
+    }
+  };

@@ -71,14 +71,14 @@ const sendMessage = async (messageData) => {
     throw new Error(`Error while sending message: ${err.message}`);
   }
 };
-const getAllMessages = async (channelId) => {
-  try {
-    const messages = await MessageModel.find();
-    return messages;
-  } catch (err) {
-    throw new Error(`Error while fetching messages: ${err.message}`);
-  }
-};
+// const getAllMessages = async () => {
+//   try {
+//     const messages = await MessageModel.find();
+//     return messages;
+//   } catch (err) {
+//     throw new Error(`Error while fetching messages: ${err.message}`);
+//   }
+// };
 
 
 module.exports = {
@@ -88,5 +88,5 @@ module.exports = {
   getAllChannels,
   findByChannelname,
   sendMessage,
-  getAllMessages,
+  //getAllMessages,
 };

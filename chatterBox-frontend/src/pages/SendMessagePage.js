@@ -21,8 +21,7 @@ const SendMessagePage = () => {
   const {loading, success, error} = messageSend
   console.log(loading, success, error)
   
-  const sendMessageHandler = (event) => {
-    event.preventDefault();
+  const sendMessageHandler = () => {
     dispatch(sendMessage(content, loggedInUser._id, id))
   };
 
@@ -41,7 +40,7 @@ const SendMessagePage = () => {
               onChange={(e) => handleContentChange(e)}
             />
           </Form.Group>
-          <LinkContainer to={`/channels/${id}/messages`}>
+          <LinkContainer to={`/messages/${id}`}> 
             <Button
                 type="submit"
                 variant="primary"

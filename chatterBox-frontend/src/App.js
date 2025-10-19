@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
-import ChannelListPage from "./pages/ChannelListPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ChannelPage from "./pages/ChannelPage";
@@ -10,8 +9,9 @@ import UserProfilePage from "./pages/UserProfilePage";
 import UsersListPage from "./pages/UsersListPage";
 import AddUserPage from "./pages/AddUserPage";
 import CreateChannelPage from "./pages/CreateChannelPage";
-import SendMessagePage from "./pages/SendMessagePage";
+import ChannelListPage from "./pages/ChannelListPage";
 import ChannelDetailsPage from "./pages/ChannelDetailsPage";
+import SendMessagePage from "./pages/SendMessagePage";
 import MessageListPage from "./pages/MessageListPage";
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/admin/users" element={<UsersListPage />}></Route>
             <Route path="/channels/public" element={<ChannelListPage />}></Route>
             <Route path="/channels/:id/message" element={<SendMessagePage />}></Route>
-            <Route path="/channels/:id/messages" element={ <MessageListPage /> }></Route>
+            <Route path="/messages/:id" element={ <MessageListPage /> }></Route>
           </Routes>
         </Container>
       </main>

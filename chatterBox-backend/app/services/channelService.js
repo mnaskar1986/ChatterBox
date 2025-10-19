@@ -64,7 +64,7 @@ const joinChannel = expressAsyncHandler(async (req, res) => {
 const getChannelDetails = expressAsyncHandler(async (req, res) => {
   try {
     const channelId = req.params.id;
-    // console.log("channel_id is=>"+ channelId);
+    console.log("channel_id is=>"+ channelId);
     const result = await channelRepository.getChannelDetails(channelId);
 
     if (result) {
@@ -132,26 +132,26 @@ const sendMessage = expressAsyncHandler(async (req, res) => {
   }
 });
 
-const getAllMessages = expressAsyncHandler(async (req, res) => {
-  try {
-    const { channelId1 } = req.body;
-    const { channelId } = req.params.id;
-    console.log("Channel id1 is=>"+ channelId1);
-     console.log("Channel id is=>"+ channelId);
-    const result = await messageRepository.getAllMessages();
-    //console.log(result);
-    res.status(200).json({
-      data: result,
-      message: "Successfully fetched all messages.",
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      message: "Error fetching messages",
-      error: err.message,
-    });
-  }
-});
+// const getAllMessages = expressAsyncHandler(async (req, res) => {
+//   try {
+//     const { channelId1 } = req.body;
+//     const { channelId } = req.params.id;
+//     console.log("Channel id1 is=>"+ channelId1);
+//      console.log("Channel id is=>"+ channelId);
+//     const result = await messageRepository.getAllMessages();
+//     //console.log(result);
+//     res.status(200).json({
+//       data: result,
+//       message: "Successfully fetched all messages.",
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({
+//       message: "Error fetching messages",
+//       error: err.message,
+//     });
+//   }
+// });
 
 module.exports = {
   createChannel,
@@ -159,5 +159,5 @@ module.exports = {
   getChannelDetails,
   getAllChannels,
   sendMessage,
-  getAllMessages,
+  //getAllMessages,
 };

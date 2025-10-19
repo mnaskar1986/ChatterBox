@@ -8,16 +8,16 @@ const {
   getAllChannels,
   joinChannel,
   sendMessage,
-  getAllMessages,
+  //getAllMessages,
 } = require("../services/channelService");
 
 channelRouter.route("/:id").put(auth, joinChannel);
-channelRouter.route("/:id").get(auth, getChannelDetails);
+channelRouter.route("/:id").get(getChannelDetails);
 channelRouter.route("/").get(auth, getAllChannels);
 channelRouter.route("/").post(auth, createChannel);
 
 channelRouter.route("/:id/message").post(auth, sendMessage);
-channelRouter.route("/:id/messages").get(getAllMessages);
+//channelRouter.route("/:id").get(getAllMessages);
 
 
 module.exports = channelRouter;

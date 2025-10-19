@@ -20,14 +20,14 @@ export const messageSendReducer = (state = {}, action) => {
   }
 };
 
-export const messageListReducer = (state = {}, action) => {
+export const messageListReducer = (state = { messages: [] }, action) => {
   switch (action.type) {
     case MESSAGE_LIST_REQUEST:
       return { loading: true };
     case MESSAGE_LIST_SUCCESS:
-      return { loading: false, successDelete: true };
+      return { loading: false, success: true, messages: action.payload  };
     case MESSAGE_LIST_FAILURE:
-      return { loading: false, errorDelete: action.payload };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
