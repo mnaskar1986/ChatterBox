@@ -7,12 +7,12 @@ const Channels = ({ channel }) => {
   return (
     <Card className="p-3 my-3 rounded">
       <Card.Body>
-        <Link to={`/channels/${channel._id}`}>
+        {/* <Link to={`/channels/${channel._id}`}> */}
           <Card.Title as="div">
-            <strong>{channel.name}</strong>
+            Channel Name: <strong>{channel.name}</strong>
           </Card.Title>
-        </Link>
-        <Card.Text as="h3">{channel.description}</Card.Text>
+        {/* </Link> */}
+        Channel Description: <strong>{channel.description}</strong>
       </Card.Body>
     </Card>
   );

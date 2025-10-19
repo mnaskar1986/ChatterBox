@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
   const loggedInUser = useSelector((state) => state.login.userInfo);
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   const dispatch = useDispatch();
 
@@ -69,23 +70,6 @@ const Header = () => {
                 </LinkContainer>
               )}
 
-              {/* {loggedInUser && (
-                <NavDropdown title="Admin" id="adminmenu">
-                  <LinkContainer to="/admin/users">
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/products">
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/categories">
-                    <NavDropdown.Item>Categories</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/orders">
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              )} */}
-
               {!loggedInUser && (
                 <LinkContainer to="/login">
                   <Nav.Link>
@@ -109,6 +93,10 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              {loggedInUser && (
+                  <p class="text-white"><i class="bi bi-hand-wave"> Welcome {userInfo.username}</i></p>
+              )}
+
             </Nav>
           </Navbar.Collapse>
         </Container>

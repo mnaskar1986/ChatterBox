@@ -88,11 +88,13 @@ export const joinChannel =
             dispatch({
               type: JOIN_CHANNEL_SUCCESS,
               payload: res.data.data,
+              success: 'Successfully joined the channel',
             });
           } else {
             dispatch({
               type: JOIN_CHANNEL_FAILURE,
               payload: res.data.message,
+              error: 'Unable to join the channel',
             });
           }
         });
@@ -100,6 +102,7 @@ export const joinChannel =
       dispatch({
         type: JOIN_CHANNEL_FAILURE,
         payload: err.response.data.message,
+        error: 'Unable to join the channel',
       });
     }
   };
@@ -110,11 +113,12 @@ export const joinChannel =
       type: LIST_CHANNEL_REQUEST,
     });
 
-    const channelInfo = JSON.parse(sessionStorage.getItem("channelInfo"));
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.sessionToken}`,
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
       },
@@ -150,9 +154,11 @@ export const fetchChannelDetails =
       type: DETAILS_CHANNEL_REQUEST,
     });
 
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.sessionToken}`,
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
       },
@@ -179,7 +185,7 @@ export const fetchChannelDetails =
   }
 };
 export const sendMessage =
-  (content, channelId, userId) =>
+  (content, userId, channelId) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -187,7 +193,7 @@ export const sendMessage =
       });
 
       const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-      const userId = userInfo._id;
+      //const userId = userInfo._id;
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -234,6 +240,7 @@ export const sendMessage =
       const config = {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.sessionToken}`,
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
         },

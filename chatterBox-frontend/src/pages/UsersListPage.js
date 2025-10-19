@@ -48,7 +48,6 @@ const UsersListPage = () => {
           <Table striped hover bordered className="table-sm">
             <thead>
               <tr className="text-center">
-                <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th></th>
@@ -57,7 +56,6 @@ const UsersListPage = () => {
             <tbody>
               {users.map((user, index) => (
                 <tr key={user._id} className="text-center">
-                  <td>{user._id}</td>
                   <td>{user.username}</td>
                   <td>
                     <a href={`mailto:${user.email}`}>{user.email}</a>

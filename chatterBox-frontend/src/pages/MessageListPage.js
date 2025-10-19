@@ -22,11 +22,11 @@ const MessageListPage = () => {
     <>
       {loading && <AlertMessage variant="info" message="Loding..." />}
       {error && <AlertMessage variant="danger" message={error} />}
-      {messages && messages.length == 0 && (
-        <AlertMessage variant="info" message="No messages found" />
+      {!messages && (
+        <AlertMessage variant="info" message={"No messages found"} />
       )}
       <Container>
-        {messages && messages.length > 0 && (
+        {messages && (
           <Table striped hover bordered className="table-sm">
             <thead>
               <tr  className="text-center">

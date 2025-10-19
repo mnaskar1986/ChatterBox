@@ -47,7 +47,7 @@ export const login = (username, password) => async (dispatch) => {
           dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data.data,
-            success: 'Login successful',
+            //success: 'Login successful',
           });
           sessionStorage.setItem("userInfo", JSON.stringify(res.data.data));
           window.location.replace('channels/public');

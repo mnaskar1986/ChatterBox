@@ -6,6 +6,7 @@ import { login } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 const LoginPage = () => {
   const [username, setUsername] = React.useState("");
@@ -60,6 +61,7 @@ const LoginPage = () => {
           onChange={handlePasswordChange}
         />
       </FormGroup>
+      <LinkContainer to={`/channels/public`}>
       <Button
         variant="primary"
         type="submit"
@@ -68,6 +70,7 @@ const LoginPage = () => {
       >
         Login
       </Button>
+      </LinkContainer>
 
       <Row>
                 <Col>

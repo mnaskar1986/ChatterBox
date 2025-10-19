@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AlertMessage from "../components/AlertMessage";
 import {useDispatch, useSelector} from 'react-redux'
 import { createChannel } from "../actions/channelActions";
+import { LinkContainer } from "react-router-bootstrap";
 
 const CreateChannelPage = () => {
   const [name, setName] = React.useState("");
@@ -23,8 +24,7 @@ const CreateChannelPage = () => {
   const {loading, success, error} = channelCreate
   console.log(loading, success, error)
   
-  const createHandler = (event) => {
-    event.preventDefault();
+  const createHandler = () => {
     dispatch(createChannel(name, description))
   };
 
@@ -51,14 +51,15 @@ const CreateChannelPage = () => {
               onChange={(e) => handleDescriptionChange(e)}
             />
           </Form.Group>
-          <Button
-            type="submit"
-            variant="primary"
-            className="mb-3"
-            onClick={createHandler}
-          >
-            Create Channel
-          </Button>
+          <LinkContainer to={`/channels/public`}>
+            <Button
+              type="submit"
+              variant="primary"
+              className="mb-3"
+              onClick={createHandler}>
+              Create Channel
+            </Button>
+          </LinkContainer>
         </Form>
       </Container>
     </>

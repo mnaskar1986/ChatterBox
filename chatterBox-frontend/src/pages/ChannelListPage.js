@@ -14,7 +14,7 @@ const ChannelListPage = () => {
   const { id } = useParams();
 
   const channelList = useSelector((state) => state.channelList);
-  const { loading, error, channels } = channelList;
+  const { loading, error, success, channels } = channelList;
 
    const channelJoin = useSelector((state) => state.channelJoin);
    const { successJoin, errorJoin } = channelJoin;
@@ -36,11 +36,6 @@ const ChannelListPage = () => {
         <AlertMessage variant="info" message="No channels found" />
       )}
       <Container>
-        {!loading && (<LinkContainer to="/channels">
-          <Button variant="info" className="my-3">
-            Create Channel
-          </Button>
-        </LinkContainer>)}
         <div id="contentheader">
           <h3>Public Channels</h3>
         </div>
@@ -75,7 +70,7 @@ const ChannelListPage = () => {
                       </Button> */}
                     {/* </LinkContainer> */}
                     <LinkContainer to={`/channels/${channel._id}`}>
-                      <Button variant="link" className="my-3">
+                      <Button variant="link" className="mb-2">
                         Channel Details
                       </Button>
                     </LinkContainer>
@@ -84,12 +79,17 @@ const ChannelListPage = () => {
                           Messages
                       </Button>
                     </LinkContainer> */}
-                    {/* <LinkContainer to={`/channels/${channel._id}/join`}> */}
+                     <LinkContainer to={`/channels/${channel._id}/messages`}> 
                       <Button variant="link" className="mb-2"
                           onClick={ () => joinChannelHandler(`${channel._id}`)}>
                           Join Channel
                       </Button>
-                    {/* </LinkContainer> */}
+                    </LinkContainer>
+                    <LinkContainer to={`/channels/${channel._id}/message`}>
+                      <Button variant="link" className="mb-2">
+                          Send Message
+                      </Button>
+                    </LinkContainer>
                     {/* <LinkContainer to="/admin/message/new">
                       <Button variant="info" className="mb-3">
                           Send Message
@@ -101,6 +101,11 @@ const ChannelListPage = () => {
             </tbody>
           </Table>
         )}
+        {!loading && (<LinkContainer to="/channels">
+          <Button variant="info" className="my-3">
+            Create Channel
+          </Button>
+        </LinkContainer>)}
       </Container>
     </>
   );

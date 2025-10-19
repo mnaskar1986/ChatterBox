@@ -19,7 +19,7 @@ const createChannel = expressAsyncHandler(async (req, res) => {
 
     if (newChannel) {
       res.status(201).json({
-        message: "Channel successfully created",
+        //message: "Channel successfully created",
       });
     } else {
       res.status(400).json({
@@ -64,7 +64,7 @@ const joinChannel = expressAsyncHandler(async (req, res) => {
 const getChannelDetails = expressAsyncHandler(async (req, res) => {
   try {
     const channelId = req.params.id;
-    console.log("channel _id is=>"+ channelId);
+    // console.log("channel_id is=>"+ channelId);
     const result = await channelRepository.getChannelDetails(channelId);
 
     if (result) {
@@ -139,7 +139,7 @@ const getAllMessages = expressAsyncHandler(async (req, res) => {
     console.log("Channel id1 is=>"+ channelId1);
      console.log("Channel id is=>"+ channelId);
     const result = await messageRepository.getAllMessages();
-    console.log(result);
+    //console.log(result);
     res.status(200).json({
       data: result,
       message: "Successfully fetched all messages.",
