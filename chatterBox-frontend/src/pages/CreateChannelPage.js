@@ -31,7 +31,7 @@ const CreateChannelPage = () => {
   return (
     <>
       <Container>
-        {error && <AlertMessage variant="danger" message={error} />}
+        {error && <AlertMessage variant="success" message={error} />}
         {success && <AlertMessage variant="success" message={success} />}
         <Form>
           <Form.Group controlId="name" className="mb-3">

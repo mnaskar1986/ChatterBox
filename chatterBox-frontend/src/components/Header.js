@@ -31,11 +31,11 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-            {loggedInUser && (<LinkContainer to="/messages">
+            {/* {loggedInUser && (<LinkContainer to="/messages">
                 <Nav.Link>
                   <i className="bi bi-envelope"> Messages</i>
                 </Nav.Link>
-              </LinkContainer>)}
+              </LinkContainer>)} */}
 
               {/* {loggedInUser && (
                 <LinkContainer to="/orders">

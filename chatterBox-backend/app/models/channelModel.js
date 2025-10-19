@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
+const { userModel } = require('./userModel');
 
-// const userSchema = mongoose.Schema(
-//     {
-//         _id :{
-//             type: String,
-//             required: true,
-//         },
-//         username: {
-//             type: String,
-//             required: true,
-//         }
-//     }
-// );
+const userSchema = mongoose.Schema(
+    {
+        username: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        }
+    }
+);
 
 const chnnelSchema = mongoose.Schema(
     {
@@ -23,10 +28,12 @@ const chnnelSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        members: [{ type: mongoose.Schema.Types.ObjectId, ref: "UserModel" }],
-        createdBy: { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: "UserModel",  
+        members: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "UserModel",
+        }],
+        createdBy: {
+            type: mongoose.Schema.Types.ObjectId,
         },
         createdTs: {
             type: Date,

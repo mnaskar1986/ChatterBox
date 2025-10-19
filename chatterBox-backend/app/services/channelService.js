@@ -3,7 +3,7 @@ const messageRepository = require("../database/repositories/messageRepository");
 const expressAsyncHandler = require("express-async-handler");
 
 const createChannel = expressAsyncHandler(async (req, res) => {
-  const { name, description} = req.body;
+  const { name, description, createdBy} = req.body;
   try {
     const existingChannel = await channelRepository.findByChannelname(name);
     if (existingChannel) {
@@ -14,7 +14,7 @@ const createChannel = expressAsyncHandler(async (req, res) => {
     const newChannel = await channelRepository.createChannel({
       name: name,
       description: description,
-      createdBy: req.user,
+      createdBy: createdBy,
     });
 
     if (newChannel) {
@@ -37,9 +37,10 @@ const createChannel = expressAsyncHandler(async (req, res) => {
 
 const joinChannel = expressAsyncHandler(async (req, res) => {
   try {
-    console.log("inside join channel");
-    const channelId = req.params.id;
-    const userId = req.user._id;
+    const { channelId, userId } = req.body;
+    // console.log("inside join channel");
+    // console.log("Channel id is=>" + channelId);
+    // console.log("User id is:>"+ userId);
     const result = await channelRepository.
     joinChannel(channelId, userId);
 
@@ -63,7 +64,7 @@ const joinChannel = expressAsyncHandler(async (req, res) => {
 const getChannelDetails = expressAsyncHandler(async (req, res) => {
   try {
     const channelId = req.params.id;
-    //console.log("channel _id is=>"+ channelId);
+    console.log("channel _id is=>"+ channelId);
     const result = await channelRepository.getChannelDetails(channelId);
 
     if (result) {
@@ -106,9 +107,9 @@ const getAllChannels = expressAsyncHandler(async (req, res) => {
 const sendMessage = expressAsyncHandler(async (req, res) => {
   try {
     const { content, userId, channelId } = req.body;
-    console.log("content is:>" +content);
-    console.log("Channel id to send message is::"+ channelId);
-    console.log("Sender id is:"+ userId);
+    // console.log("content is:>" +content);
+    // console.log("Channel id to send message is::"+ channelId);
+    // console.log("Sender id is:"+ userId);
     const result = await messageRepository.sendMessage({
           content: content,
           sender: userId,
@@ -131,10 +132,32 @@ const sendMessage = expressAsyncHandler(async (req, res) => {
   }
 });
 
+const getAllMessages = expressAsyncHandler(async (req, res) => {
+  try {
+    const { channelId1 } = req.body;
+    const { channelId } = req.params.id;
+    console.log("Channel id1 is=>"+ channelId1);
+     console.log("Channel id is=>"+ channelId);
+    const result = await messageRepository.getAllMessages();
+    console.log(result);
+    res.status(200).json({
+      data: result,
+      message: "Successfully fetched all messages.",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Error fetching messages",
+      error: err.message,
+    });
+  }
+});
+
 module.exports = {
   createChannel,
   joinChannel,
   getChannelDetails,
   getAllChannels,
   sendMessage,
+  getAllMessages,
 };

@@ -33,7 +33,7 @@ const getAllMessages = expressAsyncHandler(async (req, res) => {
   try {
     const { channelId } = req.body;
     const result = await messageRepository.getAllMessages(channelId);
-    console.log(channelId)
+    console.log("Inside message service, channel id is:"+ channelId)
     res.status(200).json({
       data: result,
       message: "Successfully fetched all messages.",

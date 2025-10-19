@@ -48,7 +48,6 @@ export const createChannel =
             payload: res.data.message,
             success: "Channel created successfully",
           });
-          window.location.replace('channels/public');
         } else {
           dispatch({
             type: CREATE_CHANNEL_FAILURE,
@@ -65,18 +64,12 @@ export const createChannel =
 };
 
 export const joinChannel =
-  (channelId) =>
-  async (dispatch) => {
+  (channelId, userId) => async (dispatch) =>{
     try {
-      console.log("Inside join channel function");
       dispatch({
         type: JOIN_CHANNEL_REQUEST,
       });
       const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-      const channelInfo = JSON.parse(sessionStorage.getItem("channelInfo"));
-      if (channelId == "") {
-        channelId = channelInfo._id;
-      }
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +79,9 @@ export const joinChannel =
         },
       };
       await axios
-        .get(BACKEND_URL_ENDPOINT + `channels/${channelId}/join`, config)
+        .put(GET_ALL_CHANNELS_API+ '/' + `${channelId}`,
+           { channelId, userId },
+           config)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -223,6 +218,48 @@ export const sendMessage =
       dispatch({
         type: MESSAGE_SEND_FAILURE,
         payload: err.response.data.message,
+      });
+    }
+  };
+
+  export const listMessages = 
+  (channelId) => async (dispatch) => {
+    try {
+      dispatch({
+        type: MESSAGE_LIST_REQUEST,
+      });
+  
+      const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH",
+        },
+      };
+  
+      await axios
+        .get(GET_ALL_CHANNELS_API+ '/' + `${channelId}` + '/messages',
+          { channelId }, 
+          config)
+        .then((res) => {
+          if (res.status === 200) {
+            dispatch({
+              type: MESSAGE_LIST_SUCCESS,
+              payload: res.data.data,
+            });
+          } else {
+            dispatch({
+              type: MESSAGE_LIST_FAILURE,
+              payload: 'Not able to fetch the messages',
+            });
+          }
+        });
+    } catch (err) {
+      dispatch({
+        type: MESSAGE_LIST_FAILURE,
+        payload: 'Not abl to fetch the messages',
       });
     }
   };

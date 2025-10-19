@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const ChannelModel = require("../../models/channelModel");
+const UserModel = require("../../models/userModel");
 
 const createChannel = async (channelData) => {
   try {
@@ -23,16 +24,17 @@ const joinChannel = async (channelId, userId) => {
       _id: channelId,
     });
 
-    const userObject = await userModel.findOne({
+    const userObject = await UserModel.findOne({
       _id: userId,
     });
 
     if (!channelObject || ! userObject) {
       return null;
     }
+    channelObject.members.push(userObject);
 
-    Object.assign(channelObject, userId);
-    Object.assign(userObject, channelId);
+    userObject.joinedChannels.push(channelObject);
+    
     const joinChannel = await channelObject.save();
     const updateUser = await userObject.save();
     return joinChannel;
@@ -69,6 +71,14 @@ const sendMessage = async (messageData) => {
     throw new Error(`Error while sending message: ${err.message}`);
   }
 };
+const getAllMessages = async (channelId) => {
+  try {
+    const messages = await MessageModel.find();
+    return messages;
+  } catch (err) {
+    throw new Error(`Error while fetching messages: ${err.message}`);
+  }
+};
 
 
 module.exports = {
@@ -78,4 +88,5 @@ module.exports = {
   getAllChannels,
   findByChannelname,
   sendMessage,
+  getAllMessages,
 };

@@ -41,13 +41,13 @@ const SendMessagePage = () => {
               onChange={(e) => handleContentChange(e)}
             />
           </Form.Group>
-          <LinkContainer to={`/channels/${id}/message`}>
+          <LinkContainer to={`/channels/${id}/messages`}>
             <Button
                 type="submit"
                 variant="primary"
                 className="mb-3"
                 onClick={sendMessageHandler}>
-                Send Message ${id}
+                Send Message
             </Button>
           </LinkContainer>
         </Form>

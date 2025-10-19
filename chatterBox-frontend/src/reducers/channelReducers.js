@@ -44,7 +44,8 @@ export const joinChannelReducer = (state = {}, action) => {
     case JOIN_CHANNEL_REQUEST:
       return { loading: true };
     case JOIN_CHANNEL_SUCCESS:
-      return { loading: false, success: true, channels: action.payload };
+      return { loading: false, success: true, 
+        channels: action.payload };
     case JOIN_CHANNEL_FAILURE:
       return { loading: false, error: action.payload };
     default:

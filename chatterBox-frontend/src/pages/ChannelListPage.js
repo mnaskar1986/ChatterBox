@@ -19,19 +19,15 @@ const ChannelListPage = () => {
    const channelJoin = useSelector((state) => state.channelJoin);
    const { successJoin, errorJoin } = channelJoin;
 
-  //const channelInfo = JSON.parse(sessionStorage.getItem("channelInfo"));
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
   useEffect(() => {
     dispatch(listChannels());
     }, [dispatch]);
 
-  //   const handleDetails = (id) => {
-  //      dispatch(fetchChannelDetails(id));
-  //  };
-
-  const joinHandler = (id) => {
-       dispatch(joinChannel(id));
-   };
+  const joinChannelHandler = (id) => {
+         dispatch(joinChannel(id, userInfo._id))
+       };
   return (
     <>
       {loading && <AlertMessage variant="info" message="Loding..." />}
@@ -45,6 +41,9 @@ const ChannelListPage = () => {
             Create Channel
           </Button>
         </LinkContainer>)}
+        <div id="contentheader">
+          <h3>Public Channels</h3>
+        </div>
         {channels && channels.length > 0 && (
         //   <Row>
         //   {channels.map((channel) => (
@@ -76,10 +75,21 @@ const ChannelListPage = () => {
                       </Button> */}
                     {/* </LinkContainer> */}
                     <LinkContainer to={`/channels/${channel._id}`}>
-                      <Button variant="primary" className="my-3">
-                        Details
+                      <Button variant="link" className="my-3">
+                        Channel Details
                       </Button>
                     </LinkContainer>
+                     {/* <LinkContainer to={`/channels/${channel._id}/messages`}>
+                      <Button variant="link" className="mb-2">
+                          Messages
+                      </Button>
+                    </LinkContainer> */}
+                    {/* <LinkContainer to={`/channels/${channel._id}/join`}> */}
+                      <Button variant="link" className="mb-2"
+                          onClick={ () => joinChannelHandler(`${channel._id}`)}>
+                          Join Channel
+                      </Button>
+                    {/* </LinkContainer> */}
                     {/* <LinkContainer to="/admin/message/new">
                       <Button variant="info" className="mb-3">
                           Send Message

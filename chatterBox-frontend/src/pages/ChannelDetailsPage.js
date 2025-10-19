@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import AlertMessage from "../components/AlertMessage";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchChannelDetails, joinChannel } from "../actions/channelActions";
+import { fetchChannelDetails, listMessages } from "../actions/channelActions";
 
 const ChannelDetailsPage = () => {
   const dispatch = useDispatch();
@@ -12,21 +12,20 @@ const ChannelDetailsPage = () => {
   const location = useLocation();
   const channelId = location.state?.channelId;
 
+  const loggedInUser = JSON.parse(sessionStorage.getItem("userInfo"));
   const channelDetails = useSelector((state) => state.channelDetails);
   const { loading, error, channel } = channelDetails;
 
    const channelJoin = useSelector((state) => state.channelJoin);
    const { successJoin, errorJoin } = channelJoin;
 
-  //const channelInfo = JSON.parse(sessionStorage.getItem("channelInfo"));
-
   useEffect(() => {
     dispatch(fetchChannelDetails(id));
     }, [dispatch]);
 
-  const joinHandler = (id) => {
-       dispatch(joinChannel(id));
-   };
+  //  const getMessagesHandler = () => {
+  //      dispatch(listMessages(id))
+  //    };
 
   return (
     <>
@@ -35,6 +34,7 @@ const ChannelDetailsPage = () => {
       {!channel && (
         <AlertMessage variant="info" message="No channel found" />
       )}
+      <h3>Channel Details</h3>
       <Container>
         {channel && (
           <Table striped hover bordered className="table-sm">
@@ -50,13 +50,15 @@ const ChannelDetailsPage = () => {
                   <td>{channel.description}</td>
                   <td>
                     <LinkContainer to={`/channels/${channel._id}/message`}>
-                      <Button variant="" className="mb-2">
+                      <Button variant="link" className="mb-2">
                           Send Message
                       </Button>
                     </LinkContainer>
-                    <LinkContainer to="/admin/message/new">
-                      <Button variant="" className="mb-2">
-                          Join Channel
+
+                    <LinkContainer to={`/channels/${channel._id}/messages`}>
+                      <Button variant="link" className="mb-2">
+                      {/* onClick={ getMessagesHandler }> */}
+                        Messages
                       </Button>
                     </LinkContainer>
                   </td>
