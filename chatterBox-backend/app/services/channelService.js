@@ -4,6 +4,7 @@ const expressAsyncHandler = require("express-async-handler");
 
 const createChannel = expressAsyncHandler(async (req, res) => {
   const { name, description, createdBy} = req.body;
+  console.log("Channel create by:>"+ createdBy);
   try {
     const existingChannel = await channelRepository.findByChannelname(name);
     if (existingChannel) {
@@ -64,7 +65,7 @@ const joinChannel = expressAsyncHandler(async (req, res) => {
 const getChannelDetails = expressAsyncHandler(async (req, res) => {
   try {
     const channelId = req.params.id;
-    console.log("channel_id is=>"+ channelId);
+    //console.log("channel_id is=>"+ channelId);
     const result = await channelRepository.getChannelDetails(channelId);
 
     if (result) {
@@ -107,9 +108,9 @@ const getAllChannels = expressAsyncHandler(async (req, res) => {
 const sendMessage = expressAsyncHandler(async (req, res) => {
   try {
     const { content, userId, channelId } = req.body;
-    // console.log("content is:>" +content);
-    // console.log("Channel id to send message is::"+ channelId);
-    // console.log("Sender id is:"+ userId);
+    //  console.log("content is:>" +content);
+    //  console.log("Channel id to send message is::"+ channelId);
+    //  console.log("Sender id is:"+ userId);
     const result = await messageRepository.sendMessage({
           content: content,
           sender: userId,

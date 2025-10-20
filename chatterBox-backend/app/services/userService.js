@@ -42,7 +42,7 @@ const login = expressAsyncHandler(async (req, res) => {
 
   try {
     const user = await userRepository.findUserByUsername(username);
-    console.log(user);
+    console.log("Inside login service");
     if (!user) {
       res.status(400).json({
         error: "User not found",
@@ -50,7 +50,7 @@ const login = expressAsyncHandler(async (req, res) => {
       return;
     }
 
-    if (user.password != password) {
+    if (!await user.matchPassword(password)) {
       res.status(401).json({
         error: "Invalid username or password",
       });
@@ -68,7 +68,7 @@ const login = expressAsyncHandler(async (req, res) => {
         sessionToken: sessionToken,
       });
     }
-
+    if(await user.matchPassword(password)){
     res.status(200).json({
       message: "User logged in successfully",
       data: {
@@ -77,7 +77,7 @@ const login = expressAsyncHandler(async (req, res) => {
         email: user.email,
         sessionToken: userSessionObject.sessionToken,
       },
-    });
+    })};
   } catch (err) {
     console.error(err);
     res.status(500).json({

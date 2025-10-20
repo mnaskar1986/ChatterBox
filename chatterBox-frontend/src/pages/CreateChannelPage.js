@@ -10,6 +10,7 @@ const CreateChannelPage = () => {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
 
+  const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   const handleChannelNameChange = (e) => {
     setName(e.target.value);
   };
@@ -26,7 +27,7 @@ const CreateChannelPage = () => {
   
   const createHandler = (event) => {
     event.preventDefault();
-    dispatch(createChannel(name, description))
+    dispatch(createChannel(name, description, userInfo._id))
   };
 
   return (
