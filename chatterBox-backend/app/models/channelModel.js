@@ -37,11 +37,7 @@ const chnnelSchema = mongoose.Schema(
         },
         createdTs: {
             type: Date,
-            default: new Date(),
-        },
-        updatedTs: {
-            type: Date,
-            default: new Date(),
+            default: Date.now,
         }
     }
 );

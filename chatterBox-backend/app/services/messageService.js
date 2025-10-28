@@ -5,7 +5,8 @@ const sendMessage = expressAsyncHandler(async (req, res) => {
   try {
     const { content} = req.body;
     const { channelId } = req.params.id;
-    //console.log("Channel id to send message is::"+ channelId);
+    console.log("Channel id to send message is::"+ channelId);
+    console.log("User id::"+ channelId);
     const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     const result = await messageRepository.sendMessage({
           content: content,
@@ -33,7 +34,7 @@ const getAllMessages = expressAsyncHandler(async (req, res) => {
   try {
     const channelId = req.params.id;
     const result = await messageRepository.getAllMessages(channelId);
-    console.log("Inside message service, channel id is:"+ channelId)
+    //console.log("Inside message service, channel id is:"+ channelId)
     console.log(result);
     res.status(200).json({
       data: result,

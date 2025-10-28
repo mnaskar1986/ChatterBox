@@ -7,18 +7,16 @@ import { registerUser } from "../actions/userActions";
 
 const SignupPage = () => {
   const [username, setUserName] = React.useState("");
-  // const [fullName, setFullName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+  //To display message if the confirm password does not match
+  const [showMessage, setShowMessage] = React.useState(false);
+  const [messageContent, setMessageContent] = React.useState('');
 
   const handleUsernameChange = (e) => {
     setUserName(e.target.value);
   };
-
-  // const handleFullNameChange = (e) => {
-  //   setFullName(e.target.value);
-  // };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -39,7 +37,22 @@ const SignupPage = () => {
   
   const registerHandler = (event) => {
     event.preventDefault();
-    dispatch(registerUser(username, email, password))
+    if(!username|| !email || !password || !confirmPassword) {
+        setMessageContent('Please provide all the field values.');
+        setShowMessage(true);
+        return;
+    }
+    if(password !== confirmPassword){
+      setMessageContent('Password and confirm password does not match.');
+      setShowMessage(true);
+      return;
+    }
+      dispatch(registerUser(username, email, password))
+      setUserName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      window.location.replace("/login");
   };
 
   return (
@@ -47,6 +60,9 @@ const SignupPage = () => {
       <Container>
         {error && <AlertMessage variant="danger" message={error} />}
         {success && <AlertMessage variant="success" message={success} />}
+        {showMessage && (
+            <AlertMessage variant="danger" message={messageContent} />
+          )}
         <Form>
           <Form.Group controlId="username" className="mb-3">
             <Form.Label>Username</Form.Label>

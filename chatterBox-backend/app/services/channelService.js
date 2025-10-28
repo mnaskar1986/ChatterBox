@@ -1,6 +1,7 @@
 const channelRepository = require("../database/repositories/channelRepository");
 const messageRepository = require("../database/repositories/messageRepository");
 const expressAsyncHandler = require("express-async-handler");
+const UserModel = require("../models/userModel");
 
 const createChannel = expressAsyncHandler(async (req, res) => {
   const { name, description, createdBy} = req.body;
@@ -108,14 +109,16 @@ const getAllChannels = expressAsyncHandler(async (req, res) => {
 const sendMessage = expressAsyncHandler(async (req, res) => {
   try {
     const { content, userId, channelId } = req.body;
-    //  console.log("content is:>" +content);
-    //  console.log("Channel id to send message is::"+ channelId);
-    //  console.log("Sender id is:"+ userId);
+      console.log("content is:>" +content);
+      console.log("Channel id to send message is::"+ channelId);
+      console.log("Sender id is:"+ userId);
+      const userObject = await UserModel.findOne({_id: userId });
     const result = await messageRepository.sendMessage({
           content: content,
-          sender: userId,
+          sender: userObject,
           channelId: channelId,
         });
+        console.log("Result is:>" + result);
     if (result) {
       res.status(201).json({
         message: "Message sent successfully",

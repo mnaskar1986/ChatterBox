@@ -28,6 +28,8 @@ const LoginPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(login(username, password));
+    setUsername('');
+    setPassword('');
   };
 
   const navigate = useNavigate();

@@ -1,4 +1,22 @@
 const mongoose = require('mongoose');
+const { userModel } = require('./userModel');
+
+const userSchema = mongoose.Schema(
+    {
+        username: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        }
+    }
+);
 
 const messageSchema = mongoose.Schema({
     content: {
@@ -6,8 +24,9 @@ const messageSchema = mongoose.Schema({
         required: true,
     },
     sender: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        type: Object, 
+        ref: 'User', 
+        required: true
     },
     channelId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +34,7 @@ const messageSchema = mongoose.Schema({
     },
     createdTs: {
         type: Date,
-        default: new Date(),
+        default: Date.now,
     }
 });
 
